@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const LoginPage: React.FC = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -22,6 +23,11 @@ const LoginPage: React.FC = () => {
                     <input type="password" className="mt-2.5 w-full" placeholder="Enter your password"/>
                 </div>
             </label>
+            <button className="mt-5 w-full">Login now</button>
+            <p className="mt-3 text-sm text-gray-500 font-medium">
+                Not registered yet?&nbsp;
+                <Link to="/signup" className="text-gray-300">Register →</Link>
+            </p>
         </form>
     </main>
 }
