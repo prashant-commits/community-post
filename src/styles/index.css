@@ -62,7 +62,7 @@ button:active {
   border-radius: calc(0.5rem + 2px);
   content: '';
   background: linear-gradient(var(--deg), theme('colors.gray.400'), theme('colors.gray.700'));
-  transition: --deg 0.4s;
+  transition: --deg;
   animation: border-gradient-bg 2s infinite;
   z-index: -1;
 }

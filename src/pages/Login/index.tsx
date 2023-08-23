@@ -19,7 +19,10 @@ const LoginPage: React.FC = () => {
             </label>
             <label>
                 <div className="mt-4 text-gray-300">
-                    <p>Password</p>
+                    <p className="flex items-end justify-between">
+                        Password
+                        <Link to="#forgotpass" className="ml-auto text-xs text-gray-300 font-medium">Forgot password?</Link>
+                    </p>
                     <input type="password" className="mt-2.5 w-full" placeholder="Enter your password"/>
                 </div>
             </label>
