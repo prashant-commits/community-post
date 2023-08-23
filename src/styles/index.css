@@ -46,6 +46,10 @@ button:active {
   @apply bg-blue-700 text-gray-300;
 }
 
+button:disabled {
+  @apply bg-blue-900 text-gray-100 cursor-not-allowed;
+}
+
 .border-gradient {
   position: relative;
 }
