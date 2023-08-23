@@ -51,40 +51,26 @@ button:active {
 }
 
 @property --deg{
-  syntax: '<angle>';
+  syntax: "<angle>";
   inherits: false;
   initial-value: 0deg;
 }
 
 .border-gradient::before {
-  @apply absolute inset-[-2px];
   --deg: 0deg;
+  @apply absolute inset-[-2px];
   border-radius: calc(0.5rem + 2px);
   content: '';
   background: linear-gradient(var(--deg), theme('colors.gray.400'), theme('colors.gray.700'));
-  transition: --deg;
-  animation: border-gradient-bg 2s infinite;
+  animation: border-gradient-bg 5s linear infinite;
   z-index: -1;
 }
 
 @keyframes border-gradient-bg {
-  0% {
+  from {
     --deg: 0deg;
   }
-
-  25% {
-    --deg: 90deg;
-  }
-
-  50% {
-    --deg: 180deg;
-  }
-
-  75% {
-    --deg: 270deg;
-  }
-
-  100% {
+  to {
     --deg: 360deg;
   }
 }
