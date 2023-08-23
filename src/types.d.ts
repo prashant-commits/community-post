@@ -1,7 +1,8 @@
 type AppValues = {
     user: User | null;
     createUser: (email:string, username: string, password: string) => Promise<User>;
-    loginUser: (usernameOrEmail: string, password: string) => Promise<User>
+    loginUser: (usernameOrEmail: string, password: string) => Promise<User>;
+    logoutUser: () => void;
 }
 
 type User = {

@@ -17,7 +17,7 @@ const LoginPage: React.FC = () => {
         setIsLoginin(true);
         loginUser(usernameOrEmail.value, password.value)
             .then(user => {
-                // navigate("/login")
+                navigate("/")
                 toast(`${user.username} account logged in`)
             })
             .catch(error => {

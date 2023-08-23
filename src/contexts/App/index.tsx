@@ -1,4 +1,5 @@
 import {createContext, useContext, useEffect, useState} from "react"
+import { useNavigate } from "react-router-dom";
 import {Md5} from "ts-md5";
 
 type AppProviderProps = {
@@ -10,6 +11,7 @@ const AppContext = createContext<AppValues | undefined>(undefined)
 const AppProvider: React.FC<AppProviderProps> = ({children}) => {
     const [users, setUsers] = useState<User[]>([])
     const [user, setUser] = useState<User | null>(null)
+    const navigate = useNavigate()
 
     useEffect(() => {
         if(users.length === 0) return;
@@ -17,14 +19,31 @@ const AppProvider: React.FC<AppProviderProps> = ({children}) => {
     }, [users])
 
     useEffect(() => {
+        if(user)
+        localStorage.setItem("user", JSON.stringify(user))
+    }, [user])
+
+    useEffect(() => {
         const usersStr = localStorage.getItem("users")
 
         if(!usersStr) return;
         const parsed  = JSON.parse(usersStr) as User[];
-        if(typeof parsed === "object" && parsed[0]) {
+        if(parsed && typeof parsed === "object" && parsed[0]) {
             setUsers(parsed)
         }
-        
+    }, [])
+
+    useEffect(() => {
+        const userStr = localStorage.getItem("user");
+
+        if(!userStr) return;
+        const parsed = JSON.parse(userStr) as User;
+        if(parsed && typeof parsed === "object" && parsed.username) {
+            setUser(parsed);
+            navigate("/")
+        }else {
+            navigate("/login")
+        }
     }, [])
 
     const createUser = async (email: string, username: string, password: string) => {
@@ -55,13 +74,15 @@ const AppProvider: React.FC<AppProviderProps> = ({children}) => {
     }
 
     const loginUser =async (usernameOrEmail:string, password: string) => {
-        const findUser = users.find(({username, email}) => {
+        const findUserIndex = users.findIndex(({username, email}) => {
             return username === usernameOrEmail || email === usernameOrEmail
         })
 
-        if(!findUser) {
+        if(findUserIndex === -1) {
             throw new Error("User not found");
         }
+
+        const findUser = {...users[findUserIndex], lastedLogin: Date.now()};
 
         const hash = Md5.hashStr(JSON.stringify({
             email: findUser.email, 
@@ -74,11 +95,20 @@ const AppProvider: React.FC<AppProviderProps> = ({children}) => {
         }
 
         setUser(findUser);
+        setUsers(prevUsers => {
+            prevUsers[findUserIndex] = findUser;
 
+            return [...prevUsers]
+        })
         return findUser;
     }
 
-    return <AppContext.Provider value={{user, createUser, loginUser}}>
+    const logoutUser = () => {
+        localStorage.removeItem("user");
+        setUser(null);
+    }
+
+    return <AppContext.Provider value={{user, createUser, loginUser, logoutUser}}>
         {children}
     </AppContext.Provider>
 } 
