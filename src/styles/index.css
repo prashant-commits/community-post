@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #131319;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+input {
+  @apply p-3 text-base leading-none rounded ring-[1.5px] ring-zinc-700 bg-transparent;
+}
+
+input:focus {
+  @apply outline-none ring-blue-500;
+}
+
+input:placeholder-shown {
+  @apply text-gray-500;
+}
+
+.border-gradient {
+  position: relative;
+}
+
+@property --deg{
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.border-gradient::before {
+  @apply absolute inset-[-2px];
+  --deg: 0deg;
+  border-radius: calc(0.5rem + 2px);
+  content: '';
+  background: linear-gradient(var(--deg), theme('colors.gray.400'), theme('colors.gray.700'));
+  transition: --deg 0.4s;
+  animation: border-gradient-bg 2s infinite;
+  z-index: -1;
+}
+
+@keyframes border-gradient-bg {
+  0% {
+    --deg: 0deg;
+  }
+
+  25% {
+    --deg: 90deg;
+  }
+
+  50% {
+    --deg: 180deg;
+  }
+
+  75% {
+    --deg: 270deg;
+  }
+
+  100% {
+    --deg: 360deg;
+  }
+}
