@@ -12,16 +12,13 @@ const SignupPage: React.FC = () => {
     const handleSubmitForm: FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault()
         //@ts-ignore
-        const {email, username, password} = event.target.elements
-        console.log(email, username, password);
-        
+        const {email, username, password} = event.target.elements        
 
         setIsSigninup(true);
-        
         createUser(email.value, username.value, password.value)
             .then(user => {
                 navigate("/login")
-                toast(`${username.value} account created`)
+                toast(`${user.username} account created`)
             })
             .catch(error => {
                 console.log(error);

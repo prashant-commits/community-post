@@ -12,6 +12,7 @@ const AppProvider: React.FC<AppProviderProps> = ({children}) => {
     const [user, setUser] = useState<User | null>(null)
 
     useEffect(() => {
+        if(users.length === 0) return;
         localStorage.setItem("users", JSON.stringify(users))
     }, [users])
 
