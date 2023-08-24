@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
             How are you doing today? Would you like to share something with the community 🤗
         </p>
         <CreatePostSection onSubmit={submitPost} />
-        <div className="flex flex-col-reverse gap-4 mt-4">
+        <div className="flex flex-col-reverse gap-4 mt-4 pb-8">
             {posts.map((post) => <PostSection key={post.createdAt + post.user} {...post} />)}
         </div>
     </main>

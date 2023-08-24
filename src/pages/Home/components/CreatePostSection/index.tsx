@@ -61,7 +61,10 @@ const CreatePostSection: React.FC<CreatePostSectionProps> = ({ onSubmit }) => {
     }
 
     const handleSubmitPost = () => {
-        onSubmit?.(status, value)
+        if(!value) {
+            return;
+        }
+        onSubmit?.(status, value.trim())
         setStatus("💬")
         setValue("")
         toast("Posted! 🥳");
@@ -109,7 +112,7 @@ const CreatePostSection: React.FC<CreatePostSectionProps> = ({ onSubmit }) => {
                 </div>
             }
         </div>
-        <button className="block mt-4 w-[112px] ml-auto mr-0" onClick={handleSubmitPost}>Post</button>
+        <button className="block mt-4 w-[112px] ml-auto mr-0" onClick={handleSubmitPost} disabled={!value}>Post</button>
     </section>
 }
 

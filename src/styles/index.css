@@ -34,6 +34,10 @@ input:placeholder-shown {
   @apply text-gray-500;
 }
 
+textarea::placeholder {
+  @apply text-gray-500;
+}
+
 textarea:focus {
   @apply outline-none;
 }
