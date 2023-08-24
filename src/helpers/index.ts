@@ -4,6 +4,7 @@ export function formatTimestamp(timestamp: Date): string {
 
   if (diff < 60 * 60 * 1000) {
     const minutes = Math.floor(diff / (60 * 1000));
+    if(minutes === 0) return "now"
     return `${minutes} min ago`;
   } else if (diff < 24 * 60 * 60 * 1000) {
     const hours = Math.floor(diff / (60 * 60 * 1000));

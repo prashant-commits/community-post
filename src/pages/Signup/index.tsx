@@ -17,7 +17,7 @@ const SignupPage: React.FC = () => {
         setIsSigninup(true);
         createUser(email.value, username.value, password.value)
             .then(user => {
-                navigate("/login")
+                navigate("/")
                 toast(`${user.username} account created`)
             })
             .catch(error => {

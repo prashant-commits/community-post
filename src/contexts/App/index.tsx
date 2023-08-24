@@ -36,11 +36,13 @@ const AppProvider: React.FC<AppProviderProps> = ({children}) => {
     useEffect(() => {
         const userStr = localStorage.getItem("user");
 
-        if(!userStr) return;
+        if(!userStr) {
+            navigate("/login")
+            return;
+        };
         const parsed = JSON.parse(userStr) as User;
         if(parsed && typeof parsed === "object" && parsed.username) {
             setUser(parsed);
-            navigate("/")
         }else {
             navigate("/login")
         }

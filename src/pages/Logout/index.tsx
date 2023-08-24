@@ -1,16 +1,14 @@
 import { useEffect } from "react";
-import { useApp } from "../../contexts/App";
 import { useNavigate } from "react-router-dom";
-import { toast } from "sonner";
+import { useApp } from "../../contexts/App";
 
 const LogoutPage: React.FC = () => {
-    const {user, logoutUser} = useApp()
+    const {logoutUser} = useApp()
     const navigate = useNavigate()
 
     useEffect(() => {
         logoutUser()
         navigate("/login")
-        toast(`${user?.username} is logged out`)
     }, [])
 
     return null;

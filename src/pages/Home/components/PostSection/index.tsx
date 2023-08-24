@@ -7,8 +7,8 @@ const PostSection: React.FC<Post> = (post) => {
 
     return <section className="rounded-lg bg-zinc-800 ring-1 ring-zinc-700 py-6 px-5" style={{ flex: post.createdAt }}>
         <div className="grid grid-cols-[max-content_auto] grid-rows-[min-content_min-content] gap-y-1 gap-x-4">
-            <span className="rounded-full p-1 col-start-1 col-end-2 row-start-1 row-end-[-1] shadow shadow-gray-300">
-                <Jdenticon size={44} value={post.user} />
+            <span className="h-11 w-11 rounded-full p-2 col-start-1 col-end-2 row-start-1 row-end-[-1] ring-1 ring-zinc-600 self-center shadow-[0_0_4px_var(--tw-ring-color)_inset]">
+                <Jdenticon size={28} value={post.user} />
             </span>
             <h4 className="text-base text-gray-300 font-medium">{post.user}</h4>
             <p className="text-sm text-gray-500 font-medium">{formatTimestamp(new Date(post.createdAt))}</p>
