@@ -14,5 +14,8 @@ type User = {
 }
 
 type Post = {
-
+    status: string,
+    text: string,
+    createdAt: number,
+    user: string
 }

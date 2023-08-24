@@ -1,7 +1,11 @@
 import { FormEventHandler, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { usePopper } from "react-popper";
 
-const PostTextArea: React.FC = () => {
+type PostTextAreaProps = {
+    onChange?: (status: string, value: string) => void
+}
+
+const PostTextArea: React.FC<PostTextAreaProps> = ({onChange}) => {
     const [referenceElement, setReferenceElement] = useState<HTMLSpanElement | null>(null);
     const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
     const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
@@ -54,6 +58,10 @@ const PostTextArea: React.FC = () => {
     const handleShowPopover = () => {
         setPopoverVisible(true)
     }
+
+    useEffect(() => {
+        onChange?.(status, value);
+    }, [status, value])
 
     useLayoutEffect(() => {
         textareaRef.current?.parentNode?.appendChild(hiddenDivRef.current);
