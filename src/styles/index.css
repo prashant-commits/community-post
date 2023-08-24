@@ -34,6 +34,10 @@ input:placeholder-shown {
   @apply text-gray-500;
 }
 
+textarea:focus {
+  @apply outline-none;
+}
+
 button {
   @apply py-3 px-4 text-base leading-none rounded text-white text-center bg-blue-500 transition-all font-medium;
 }

@@ -12,3 +12,7 @@ type User = {
     lastedLogin: number,
     hash: string
 }
+
+type Post = {
+
+}
