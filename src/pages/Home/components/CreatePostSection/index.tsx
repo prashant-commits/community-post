@@ -67,6 +67,7 @@ const CreatePostSection: React.FC<CreatePostSectionProps> = ({ onSubmit }) => {
         onSubmit?.(status, value.trim())
         setStatus("💬")
         setValue("")
+        handleTextAreaHeight("");
         toast("Posted! 🥳");
     }
 
