@@ -1,6 +1,4 @@
-import { useEffect } from "react";
 import { useApp } from "../../contexts/App";
-import { useNavigate } from "react-router-dom";
 import CreatePostSection from "./components/CreatePostSection";
 import usePosts from "../../hooks/usePosts";
 import PostSection from "./components/PostSection";
@@ -8,7 +6,6 @@ import PostSection from "./components/PostSection";
 const HomePage: React.FC = () => {
     const { user } = useApp()
     const [posts, submitPost] = usePosts()
-    const navigate = useNavigate()
 
 
 

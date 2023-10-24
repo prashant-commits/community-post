@@ -5,12 +5,13 @@ import { toast } from "sonner";
 
 const LoginPage: React.FC = () => {
     const {loginUser} = useApp()
-    const [showPassword, setShowPassword] = useState(false);
+    // const [showPassword, setShowPassword] = useState(false);
     const [isLoginin, setIsLoginin] = useState(false)
     const navigate = useNavigate()
 
     const handleSubmitForm: FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault()
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
         const {usernameOrEmail, password} = event.target.elements
         
